@@ -1,6 +1,5 @@
 package com.tts;
 
-import java.util.Locale;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -38,7 +37,7 @@ public class AddressBook {
         System.out.println("Enter a name, number, or email address.");
         String searchFirstName = scanner.next();
 
-        for (int i = 0; i <= ourAddressBook.size(); i++) {
+        for (int i = 0; i < ourAddressBook.size(); i++) {
             IndividualInfo NewPerson = (IndividualInfo)ourAddressBook.get(i);
 
             if (searchFirstName.equals(NewPerson.getFirstName())
@@ -55,7 +54,7 @@ public class AddressBook {
         System.out.println("Enter a name, number, or email address.");
         String deleteIndividual = scanner.next();
 
-        for (int i = 0; i <= ourAddressBook.size(); i++) {
+        for (int i = 0; i < ourAddressBook.size(); i++) {
             IndividualInfo NewPerson = (IndividualInfo) ourAddressBook.get(i);
             if ( deleteIndividual.equals(NewPerson.getFirstName())
                     || deleteIndividual.equals(NewPerson.getLastName())
