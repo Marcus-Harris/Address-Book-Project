@@ -1,63 +1,108 @@
 package com.tts;
 
+import java.util.Locale;
+import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class AddressBook {
+    ArrayList ourAddressBook;
 
-    private int ID;
-    private String firstName;
-    private String lastName;
-    private int phoneNumber;
-    private String emailAddress;
-
-    public AddressBook(int ID, String firstName, String lastName, int phoneNumber, String emailAddress) {
-        this.ID = ID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.emailAddress = emailAddress;
+    public AddressBook() {
+        this.ourAddressBook = new ArrayList<>();
     }
 
-    public HashMap<Integer, ArrayList<String>> ourAddressBook = new HashMap<Integer, ArrayList<String>>();
+    Scanner scanner = new Scanner(System.in);
 
-    public int getID() {
-        return ID;
+    public void add() {
+        // Function to suggest to users to add values to their entries
+        System.out.println("Enter your first name.");
+        String firstName = scanner.next();
+
+        System.out.println("Enter your last name.");
+        String lastName = scanner.next();
+
+        System.out.println("Enter your phone number.");
+        String phoneNumber = scanner.next();
+
+        System.out.println("Enter your email address.");
+        String emailAddress = scanner.next();
+
+        System.out.println("Your entry has been added!");
+
+        IndividualInfo NewPerson = new IndividualInfo(firstName, lastName, phoneNumber, emailAddress);
+
+        ourAddressBook.add(NewPerson);
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void search() {
+        System.out.println("Enter a name, number, or email address.");
+        String searchFirstName = scanner.next();
+
+        for (int i = 0; i <= ourAddressBook.size(); i++) {
+            IndividualInfo NewPerson = (IndividualInfo)ourAddressBook.get(i);
+
+            if (searchFirstName.equals(NewPerson.getFirstName())
+                || searchFirstName.equals(NewPerson.getLastName())
+                || searchFirstName.equals(NewPerson.getEmailAddress())
+                || searchFirstName.equals(NewPerson.getPhoneNumber())
+            ) {
+                System.out.println(NewPerson.toString());
+            }
+        }
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void deletePerson () {
+        System.out.println("Enter a name, number, or email address.");
+        String deleteIndividual = scanner.next();
+
+        for (int i = 0; i <= ourAddressBook.size(); i++) {
+            IndividualInfo NewPerson = (IndividualInfo) ourAddressBook.get(i);
+            if ( deleteIndividual.equals(NewPerson.getFirstName())
+                    || deleteIndividual.equals(NewPerson.getLastName())
+                    || deleteIndividual.equals(NewPerson.getEmailAddress())
+                    || deleteIndividual.equals(NewPerson.getPhoneNumber())
+            ) {
+                ourAddressBook.remove(i);
+                System.out.println("There are now " + ourAddressBook.size() + " entries in our address book.");
+            } else {
+                System.out.println("Our records indicate there is no person that has " + "'" + deleteIndividual +"'" +
+                        " as a part of their information");
+            }
+        }
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void print() {
+        if (ourAddressBook.size() == 0) {
+            System.out.println("This address book is currently empty.");
+        } else {
+            for (int i = 0; i < ourAddressBook.size(); i++) {
+                IndividualInfo NewPerson = (IndividualInfo) ourAddressBook.get(i);
+                System.out.println(NewPerson.toString());
+            }
+            if (ourAddressBook.size() == 1) {
+                System.out.println("There is currently a single entry in our address book.");
+            } else {
+                System.out.println("There are currently " + ourAddressBook.size() + " entries in our address book.");
+            }
+        }
     }
 
-    public String getLastName() {
-        return lastName;
+    public void deleteAddressBook() {
+        if (ourAddressBook.size() == 0) {
+            System.out.println("This address book is currently empty.");
+        } else {
+            ourAddressBook.clear();
+            System.out.println("The contents of the entire address book have been removed.");
+        }
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    public void quit() {
+        System.out.println("Are you sure you want to quit?");
+        String quitResponse = scanner.next().toUpperCase();
 
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+        if (quitResponse.equals("YES") || quitResponse.equals("Y")) {
+            System.out.println("You have quit the program.");
+            System.exit(0);
+        }
     }
 }
