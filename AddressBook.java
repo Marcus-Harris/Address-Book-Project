@@ -11,6 +11,7 @@ public class AddressBook {
     }
 
     Scanner scanner = new Scanner(System.in);
+    IndividualInfo aPerson = new IndividualInfo();
 
     public void add() {
         // Function to suggest to users to add values to their entries
@@ -26,26 +27,37 @@ public class AddressBook {
         System.out.println("Enter your email address.");
         String emailAddress = scanner.next();
 
-        System.out.println("Your entry has been added!");
+        if (aPerson.isValid(emailAddress)) {
+            System.out.println("This email is valid. Your entry has been added!");
 
-        IndividualInfo NewPerson = new IndividualInfo(firstName, lastName, phoneNumber, emailAddress);
+            IndividualInfo NewPerson = new IndividualInfo(firstName, lastName, phoneNumber, emailAddress);
 
-        ourAddressBook.add(NewPerson);
+            ourAddressBook.add(NewPerson);
+        } else {
+            System.out.println("This email isn't valid...");
+            add();
+        }
     }
 
     public void search() {
-        System.out.println("Enter a name, number, or email address.");
-        String searchFirstName = scanner.next();
+        if (ourAddressBook.size() == 0) {
+            System.out.println("There are no contents within our address book to search.");
+        } else {
+            System.out.println("Enter a name, number, or email address.");
+            String searchFirstName = scanner.next();
 
-        for (int i = 0; i < ourAddressBook.size(); i++) {
-            IndividualInfo NewPerson = (IndividualInfo)ourAddressBook.get(i);
+            for (int i = 0; i < ourAddressBook.size(); i++) {
+                IndividualInfo NewPerson = (IndividualInfo) ourAddressBook.get(i);
 
-            if (searchFirstName.equals(NewPerson.getFirstName())
-                || searchFirstName.equals(NewPerson.getLastName())
-                || searchFirstName.equals(NewPerson.getEmailAddress())
-                || searchFirstName.equals(NewPerson.getPhoneNumber())
-            ) {
-                System.out.println(NewPerson.toString());
+                if (searchFirstName.equals(NewPerson.getFirstName())
+                        || searchFirstName.equals(NewPerson.getLastName())
+                        || searchFirstName.equals(NewPerson.getEmailAddress())
+                        || searchFirstName.equals(NewPerson.getPhoneNumber())
+                ) {
+                    System.out.println(NewPerson.toString());
+                } else {
+                    System.out.println("There is not a person with the information specified.");
+                }
             }
         }
     }
