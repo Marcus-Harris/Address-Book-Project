@@ -28,20 +28,20 @@ public class AddressBook {
         String emailAddress = scanner.next();
 
         if (aPerson.isValid(emailAddress)) {
-            System.out.println("This email is valid. Your entry has been added!");
+            System.out.println("This email is valid. Your entry has been added! \n");
 
             IndividualInfo NewPerson = new IndividualInfo(firstName, lastName, phoneNumber, emailAddress);
 
             ourAddressBook.add(NewPerson);
         } else {
-            System.out.println("This email isn't valid...");
+            System.out.println("This email isn't valid...\n");
             add();
         }
     }
 
     public void search() {
         if (ourAddressBook.size() == 0) {
-            System.out.println("There are no contents within our address book to search.");
+            System.out.println("There are no contents within our address book to search.\n");
         } else {
             System.out.println("Enter a name, number, or email address.");
             String searchFirstName = scanner.next();
@@ -54,9 +54,9 @@ public class AddressBook {
                         || searchFirstName.equals(NewPerson.getEmailAddress())
                         || searchFirstName.equals(NewPerson.getPhoneNumber())
                 ) {
-                    System.out.println(NewPerson.toString());
+                    System.out.println(NewPerson.toString() + "\n");
                 } else {
-                    System.out.println("There is not a person with the information specified.");
+                    System.out.println("There is not a person with the information specified.\n");
                 }
             }
         }
@@ -74,36 +74,36 @@ public class AddressBook {
                     || deleteIndividual.equals(NewPerson.getPhoneNumber())
             ) {
                 ourAddressBook.remove(i);
-                System.out.println("There are now " + ourAddressBook.size() + " entries in our address book.");
+                System.out.println("There are now " + ourAddressBook.size() + " entries in our address book.\n");
             } else {
                 System.out.println("Our records indicate there is no person that has " + "'" + deleteIndividual +"'" +
-                        " as a part of their information");
+                        " as a part of their information.\n");
             }
         }
     }
 
     public void print() {
         if (ourAddressBook.size() == 0) {
-            System.out.println("This address book is currently empty.");
+            System.out.println("This address book is currently empty.\n");
         } else {
             for (int i = 0; i < ourAddressBook.size(); i++) {
                 IndividualInfo NewPerson = (IndividualInfo) ourAddressBook.get(i);
                 System.out.println(NewPerson.toString());
             }
             if (ourAddressBook.size() == 1) {
-                System.out.println("There is currently a single entry in our address book.");
+                System.out.println("There is currently a single entry in our address book.\n");
             } else {
-                System.out.println("There are currently " + ourAddressBook.size() + " entries in our address book.");
+                System.out.println("There are currently " + ourAddressBook.size() + " entries in our address book.\n");
             }
         }
     }
 
     public void deleteAddressBook() {
         if (ourAddressBook.size() == 0) {
-            System.out.println("This address book is currently empty.");
+            System.out.println("This address book is currently empty.\n");
         } else {
             ourAddressBook.clear();
-            System.out.println("The contents of the entire address book have been removed.");
+            System.out.println("The contents of the entire address book have been removed.\n");
         }
     }
 
