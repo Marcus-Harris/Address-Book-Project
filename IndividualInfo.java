@@ -13,6 +13,13 @@ public class IndividualInfo {
         this.emailAddress = emailAddress;
     }
 
+    public IndividualInfo() {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -52,5 +59,10 @@ public class IndividualInfo {
                 "; Phone Number: " + phoneNumber +
                 "; Email Address: " + emailAddress + ";"
                 ;
+    }
+
+    public boolean isValid(String emailAddress) {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return emailAddress.matches(regex);
     }
 }
