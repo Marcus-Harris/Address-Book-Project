@@ -8,7 +8,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         AddressBook addressFunction = new AddressBook();
 
-        while (true) {
+        boolean restart = true;
+
+        while (restart) {
 
             System.out.println("Please choose what you'd like to do with the address book: \n" +
                     "1: Add a new entry \n" +
@@ -18,6 +20,7 @@ public class Main {
                     "5: Delete the whole address book \n" +
                     "6: Quit the program \n"
             );
+
             Integer userDecision = scanner.nextInt();
 
             switch (userDecision) {
