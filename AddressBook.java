@@ -22,9 +22,9 @@ public class AddressBook {
         String lastName = scanner.next();
 
         System.out.println("Enter your phone number.");
-        Integer phoneNumber = scanner.nextInt();
+        String phoneNumber = scanner.next();
 
-         if (phoneNumber.toString().length() != 10) {
+         if (phoneNumber.length() != 10) {
              System.out.println("The phone number must be 10 digits!");
              add();
          } else {
@@ -35,7 +35,7 @@ public class AddressBook {
              if (aPerson.isValid(emailAddress)) {
                  System.out.println("This email is valid. Your entry has been added! \n");
 
-                 IndividualInfo NewPerson = new IndividualInfo(firstName, lastName, phoneNumber.toString(), emailAddress);
+                 IndividualInfo NewPerson = new IndividualInfo(firstName, lastName, phoneNumber, emailAddress);
 
                  ourAddressBook.add(NewPerson);
              } else {
