@@ -14,10 +14,7 @@ public class IndividualInfo {
     }
 
     public IndividualInfo() {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.emailAddress = emailAddress;
+
     }
 
     public String getFirstName() {
@@ -56,7 +53,7 @@ public class IndividualInfo {
     public String toString() {
         return "First Name: " + firstName +
                 "; Last Name: " + lastName +
-                "; Phone Number: " + phoneNumber +
+                "; Phone Number: " + phoneNumberCorrector(phoneNumber) +
                 "; Email Address: " + emailAddress + ";"
                 ;
     }
@@ -65,4 +62,20 @@ public class IndividualInfo {
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         return emailAddress.matches(regex);
     }
+
+    public String phoneNumberCorrector(String aPhoneNumber) {
+        StringBuilder sb = new StringBuilder(10);
+        StringBuilder temp = new StringBuilder(aPhoneNumber);
+            char[] chars = temp.toString().toCharArray();
+
+            sb.append("(");
+            for (int i = 0; i < chars.length; i++) {
+                if (i == 3)
+                    sb.append(") ");
+                else if (i == 6)
+                    sb.append("-");
+                sb.append(chars[i]);
+            }
+            return sb.toString();
+        }
 }
