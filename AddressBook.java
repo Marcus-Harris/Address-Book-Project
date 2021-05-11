@@ -22,21 +22,27 @@ public class AddressBook {
         String lastName = scanner.next();
 
         System.out.println("Enter your phone number.");
-        String phoneNumber = scanner.next();
+        Integer phoneNumber = scanner.nextInt();
 
-        System.out.println("Enter your email address.");
-        String emailAddress = scanner.next();
+         if (phoneNumber.toString().length() != 10) {
+             System.out.println("The phone number must be 10 digits!");
+             add();
+         } else {
 
-        if (aPerson.isValid(emailAddress)) {
-            System.out.println("This email is valid. Your entry has been added! \n");
+             System.out.println("Enter your email address.");
+             String emailAddress = scanner.next();
 
-            IndividualInfo NewPerson = new IndividualInfo(firstName, lastName, phoneNumber, emailAddress);
+             if (aPerson.isValid(emailAddress)) {
+                 System.out.println("This email is valid. Your entry has been added! \n");
 
-            ourAddressBook.add(NewPerson);
-        } else {
-            System.out.println("This email isn't valid...\n");
-            add();
-        }
+                 IndividualInfo NewPerson = new IndividualInfo(firstName, lastName, phoneNumber.toString(), emailAddress);
+
+                 ourAddressBook.add(NewPerson);
+             } else {
+                 System.out.println("This email isn't valid...\n");
+                 add();
+             }
+         }
     }
 
     public void search() {
